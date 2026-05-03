@@ -33,14 +33,14 @@ def medir_tiempo(funcion, *args, repeticiones=5):
 tamanios = list(range(0, 5001, 100))
 tiempos_len, tiempos_copiar, tiempos_invertir = [], [], []
 
-print("Midiendo tiempos...")
+
 for n in tamanios:
     lista = construir_lista(n)
     tiempos_len.append(medir_tiempo(len, lista) * 1e6)
     tiempos_copiar.append(medir_tiempo(lista.copiar) * 1e6)
     tiempos_invertir.append(medir_tiempo(lista.invertir) * 1e6)
 
-print("Generando gráfica...")
+
 fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 fig.suptitle("ListaDobleEnlazada: N vs Tiempo de ejecución", fontsize=14, fontweight="bold")
 
@@ -68,4 +68,4 @@ axes[2].annotate("O(n): tiempo lineal", xy=(0.35, 0.75), xycoords="axes fraction
 plt.tight_layout()
 plt.savefig("grafica_tiempos_LDE.png", dpi=150, bbox_inches="tight")
 plt.show()
-print("Gráfica guardada como 'grafica_tiempos_LDE.png'")
+
