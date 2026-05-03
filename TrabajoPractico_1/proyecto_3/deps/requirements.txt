@@ -1,0 +1,2 @@
+matplotlib
+# Instalar la biblioteca local con: pip install -e ../../biblioteca_ayed_fiuner
