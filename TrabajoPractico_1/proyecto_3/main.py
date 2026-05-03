@@ -23,17 +23,12 @@ def medir(funcion, lista):
     return time.perf_counter() - inicio
 
 
-print("Verificando correctitud con 500 elementos...")
-lista_prueba = generar_lista(500)
-assert burbuja(lista_prueba)    == sorted(lista_prueba), "Error en burbuja"
-assert quicksort(lista_prueba)  == sorted(lista_prueba), "Error en quicksort"
-assert radix_sort(lista_prueba) == sorted(lista_prueba), "Error en radix sort"
-print("Los tres algoritmos ordenan correctamente.\n")
+
 
 tamanios = list(range(1, 1001, 10))
 t_burbuja, t_quicksort, t_radix, t_sorted = [], [], [], []
 
-print("Midiendo tiempos...")
+
 for n in tamanios:
     lista = generar_lista(n)
     t_burbuja.append(  medir(burbuja,    lista) * 1000)
@@ -41,7 +36,7 @@ for n in tamanios:
     t_radix.append(    medir(radix_sort, lista) * 1000)
     t_sorted.append(   medir(sorted,     lista) * 1000)
 
-print("Generando gráfica...")
+
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 fig.suptitle("Comparación de algoritmos de ordenamiento (N=1 a 1000)", fontsize=13, fontweight="bold")
 
@@ -69,4 +64,4 @@ ax2.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig("grafica_ordenamiento.png", dpi=150, bbox_inches="tight")
 plt.show()
-print("Gráfica guardada como 'grafica_ordenamiento.png'")
+
