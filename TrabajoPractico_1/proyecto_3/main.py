@@ -3,14 +3,12 @@ proyecto_3 / main.py
 Mide y grafica tiempos de burbuja, quicksort, radix sort y sorted().
 """
 
-import sys
-import os
-sys.path.insert(0, r'C:\Users\edgar\AYED2026C1-REISENSTADT-SPIGA')
-
 import time
 import random
 import matplotlib.pyplot as plt
-from biblioteca_ayed_fiuner.ayedfiuner.algoritmos.ordenamiento import burbuja, quicksort, radix_sort
+from ayedfiuner.algoritmos.burbuja import burbuja
+from ayedfiuner.algoritmos.quicksort import quicksort
+from ayedfiuner.algoritmos.radix_sort import radix_sort
 
 
 def generar_lista(n):
@@ -23,11 +21,8 @@ def medir(funcion, lista):
     return time.perf_counter() - inicio
 
 
-
-
 tamanios = list(range(1, 1001, 10))
 t_burbuja, t_quicksort, t_radix, t_sorted = [], [], [], []
-
 
 for n in tamanios:
     lista = generar_lista(n)
@@ -36,9 +31,9 @@ for n in tamanios:
     t_radix.append(    medir(radix_sort, lista) * 1000)
     t_sorted.append(   medir(sorted,     lista) * 1000)
 
-
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
-fig.suptitle("Comparación de algoritmos de ordenamiento (N=1 a 1000)", fontsize=13, fontweight="bold")
+fig.suptitle("Comparación de algoritmos de ordenamiento (N=1 a 1000)",
+             fontsize=13, fontweight="bold")
 
 ax1 = axes[0]
 ax1.plot(tamanios, t_burbuja,   label="Burbuja  O(n²)",        color="crimson",    linewidth=1.5)
@@ -62,6 +57,5 @@ ax2.legend()
 ax2.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("grafica_ordenamiento.png", dpi=150, bbox_inches="tight")
+plt.savefig("data/grafica_ordenamiento.png", dpi=150, bbox_inches="tight")
 plt.show()
-
