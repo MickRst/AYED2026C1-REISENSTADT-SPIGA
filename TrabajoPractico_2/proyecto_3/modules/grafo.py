@@ -97,7 +97,7 @@ class Grafo:
                     continue
                 partes = linea.split(",")
                 if len(partes) != 3:
-                    raise AristaInvalidaError(f"Línea {num} con formato inválido: {linea!r}")
+                    continue  # ignorar líneas incompletas (ej: nombre de aldea sin aristas)
                 origen, destino, peso_str = (p.strip() for p in partes)
                 try:
                     self.agregar_arista(origen, destino, int(peso_str))
